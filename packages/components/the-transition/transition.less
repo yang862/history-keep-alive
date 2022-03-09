@@ -1,0 +1,95 @@
+// global transition css
+
+/* fade */
+.fade-enter-active,
+.fade-leave-active {
+  transition-duration: 0.3s;
+  transition-property: height, opacity;
+  transition-timing-function: ease;
+  overflow: hidden;
+}
+
+.fade-enter,
+.fade-leave-active {
+  opacity: 0;
+}
+
+/* fade-transform */
+.fade-transform-leave-active {
+  transition: all 0.1s;
+}
+.fade-transform-enter-active {
+  transition: all 0.3s;
+}
+
+.fade-transform-enter {
+  opacity: 0;
+  transform: translateX(-30px);
+}
+
+.fade-transform-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+}
+
+/* slide */
+// slide-left
+.slide-left-enter {
+  transform: translate(100vw, 0);
+}
+.slide-left-enter-active {
+  position: fixed !important;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  transition-duration: 0.3s;
+  transition-property: transform;
+}
+.slide-left-leave-active {
+  display: none;
+}
+// slide-right
+.slide-right-leave-active {
+  position: fixed !important;
+  z-index: 10;
+  top: 0;
+  transition-duration: 0.3s;
+  transition-property: transform;
+  transform: translate(100vw, 0);
+}
+
+/* zoom */
+// zoom-in
+.zoom-in-enter-active {
+  position: fixed !important;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  animation: zoom ease 0.3s;
+}
+.zoom-in-leave-active {
+  display: none;
+}
+
+// zoom-out
+.zoom-out-leave-active {
+  position: fixed !important;
+  z-index: 10;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  animation: zoom ease 0.3s;
+  animation-direction: reverse;
+}
+
+@keyframes zoom {
+  from {
+    opacity: 0;
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale3d(1, 1, 1);
+  }
+}
