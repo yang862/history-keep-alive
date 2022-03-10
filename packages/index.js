@@ -1,6 +1,6 @@
 import keepAlive from './keepAlive';
 import KeepAliveComponent from './components/the-keep-alive/index.js';
-import HistoryKeepAliveComponent from './components/history-keep-alive/KeepAlive.js';
+import BaseKeepAliveComponent from './components/base-keep-alive/KeepAlive.js';
 export * from './components/index.js';
 
 class RouterHistory {
@@ -41,7 +41,7 @@ class RouterHistory {
     return params;
   }
 
-  install(Vue, { router, immediate = true, useTimestamp = true, componentPrefix = 'lk' }) {
+  install(Vue, { router, immediate = true, useTimestamp = true, componentPrefix = 'history' }) {
     const that = this;
 
     router.onReady(() => {
@@ -104,7 +104,7 @@ class RouterHistory {
 
     Object.defineProperty(Vue.prototype, '$routerHistory', { value: _history });
 
-    Vue.component('history-keep-alive', HistoryKeepAliveComponent);
+    Vue.component('history-base-keep-alive', BaseKeepAliveComponent);
     Vue.component(componentPrefix + '-keep-alive', KeepAliveComponent);
   }
 }

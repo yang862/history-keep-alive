@@ -1,6 +1,6 @@
 {
   "name": "history-keep-alive",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "vue plugin: keep alive like a native app, according to vue-router history",
   "main": "dist/index.js",
   "scripts": {
@@ -11,6 +11,14 @@
     "type": "git",
     "url": "git+https://github.com/yang862/history-keep-alive.git"
   },
+  "keywords": [
+    "vue",
+    "plugin",
+    "router",
+    "history",
+    "keep-alive",
+    "transition"
+  ],
   "author": "",
   "license": "ISC",
   "bugs": {

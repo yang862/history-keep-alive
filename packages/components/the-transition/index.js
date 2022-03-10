@@ -47,7 +47,7 @@ export default {
       return (d === 0 || d > 0 ? d : -1) + 1;
     },
     aliveKey() {
-      return this.keyFormatter(this.$route, this.depth) || this.$route.path;
+      return this.formatKey(this.$route, this.depth);
     },
   },
   created() {
@@ -62,17 +62,27 @@ export default {
       beforeEach: history => {
         if (this._inactive) return; // 元素不可见时直接return
         this.history = history
-          .filter(item => item.matched && item.matched[depth] && !item.matched[depth].meta.nocache)
+          .filter(item => 
+            item.matched && item.matched[depth]
+              && (!item.matched[depth].meta
+              || !item.matched[depth].meta.nocache)
+          )
           .filter(item => {
             return typeof this.historyFilter === 'function'
               ? this.historyFilter(item, depth)
               : true;
           })
-          .map(item => this.keyFormatter(item, depth) || item.path); // 默认path
+          .map(item => this.formatKey(item, depth));
       },
     });
   },
   methods: {
+    formatKey(route, depth) {
+      const aliveKey = route.matched && route.matched[depth]
+        && route.matched[depth].meta
+        && route.matched[depth].meta.aliveKey;
+      return aliveKey || this.keyFormatter(route, depth) || route.path; // 默认path
+    },
     handleTransition() {
       this.$router.beforeEach((to, from, next) => { // 全局路由守卫
         if (this.noTransition ||
@@ -142,7 +152,7 @@ export default {
       >
         {this.keepAlive
           ? (
-            <history-keep-alive
+            <history-base-keep-alive
               key="routerView"
               el-desc="for router-view"
               include={this.history}
@@ -150,7 +160,7 @@ export default {
               max={this.max}
             >
               <router-view ref={this.aliveRef} />
-            </history-keep-alive>
+            </history-base-keep-alive>
           ) : (<router-view ref={this.aliveRef} />)
         }
       </transition>
