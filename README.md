@@ -3,7 +3,7 @@
 [![npm](https://img.shields.io/npm/v/history-keep-alive.svg)](https://www.npmjs.com/package/history-keep-alive)
 [![npm](https://img.shields.io/npm/l/history-keep-alive.svg)](https://www.npmjs.com/package/history-keep-alive)
 
-> 需要 [vue](https://github.com/vuejs/vue) `3.x` 与 [vue-router](https://github.com/vuejs/vue-router) `3.x`。
+> 需要 [vue](https://github.com/vuejs/vue) `2.x` 与 [vue-router](https://github.com/vuejs/vue-router) `3.x`。
 
 ## 是什么
 
