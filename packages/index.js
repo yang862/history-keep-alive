@@ -1,5 +1,5 @@
 import keepAlive from './keepAlive';
-import KeepAliveComponent from './components/the-keep-alive/index.js';
+import KeepAliveComponent from './components/the-keep-alive/index.jsx';
 import BaseKeepAliveComponent from './components/base-keep-alive/KeepAlive.js';
 export * from './components/index.js';
 

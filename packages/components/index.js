@@ -1,1 +1,1 @@
-export { default as Transition } from './the-transition/index.js';
+export { default as Transition } from './the-transition/index.jsx';

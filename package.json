@@ -1,6 +1,6 @@
 {
   "name": "history-keep-alive",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "vue plugin: keep alive like a native app, according to vue-router history",
   "main": "dist/index.js",
   "scripts": {
@@ -27,6 +27,7 @@
   "homepage": "https://github.com/yang862/history-keep-alive#readme",
   "devDependencies": {
     "@babel/core": "^7.17.5",
+    "@babel/plugin-transform-runtime": "^7.17.0",
     "@babel/preset-env": "^7.16.11",
     "@rollup/plugin-commonjs": "^21.0.2",
     "@vue/babel-preset-jsx": "^1.2.4",
@@ -37,6 +38,7 @@
     "postcss": "^8.4.8",
     "rollup": "^2.69.0",
     "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-terser": "^7.0.2",

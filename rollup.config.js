@@ -1,5 +1,6 @@
 import pkg from './package.json';
 import resolve from 'rollup-plugin-node-resolve';
+import commonjs from 'rollup-plugin-commonjs';
 import { terser } from 'rollup-plugin-terser';
 import vue from 'rollup-plugin-vue';
 import postcss from 'rollup-plugin-postcss';
@@ -13,10 +14,11 @@ export default {
     {
       file: pkg.main,
       format: 'es',
-      sourcemap: true,
+      // format: 'cjs',
     },
   ],
   plugins: [
+    commonjs(),
     resolve(),
     terser(),
     vue(),
@@ -28,7 +30,8 @@ export default {
       // extract: 'css/index.less'
     }),
     babel({
-      exclude: 'node_modules/**'
+      exclude: 'node_modules/**',
+      runtimeHelpers: true,
     })
   ]
 }
