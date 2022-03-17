@@ -1,6 +1,6 @@
 {
   "name": "history-keep-alive",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "description": "vue plugin: keep alive like a native app, according to vue-router history",
   "main": "dist/index.js",
   "scripts": {
