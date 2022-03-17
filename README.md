@@ -57,6 +57,18 @@ index.vue （任意一个使用`<router-view>`的页面）
 </template>
 ```
 
+### 解决报错
+
+出于打包体积的考虑，此版本打包时没有引入 transform-runtime
+如果出现`Uncaught ReferenceError: regeneratorRuntime is not defined`的报错
+在`.babelrc`中配置（或者其他 babel 配置）
+
+```json
+"plugins": [
+  "@babel/plugin-transform-runtime",
+]
+```
+
 ## 三、Options
 
 | 参数            | 描述                                                                                                                                                           | 类型                                                          | 默认值    |
