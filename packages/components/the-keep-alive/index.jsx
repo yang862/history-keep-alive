@@ -59,9 +59,9 @@ export default {
   },
   methods: {
     formatKey(route, depth) {
-      const aliveKey = route.matched && route.matched[depth]
-        && route.matched[depth].meta
-        && route.matched[depth].meta.aliveKey;
+      const target = route.matched && route.matched[depth];
+      if (!target) return route.path;
+      const aliveKey = target && target.meta && target.meta.aliveKey;
       return aliveKey || this.keyFormatter(route, depth) || route.path; // 默认path
     }
   },
