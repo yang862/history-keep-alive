@@ -111,7 +111,7 @@ export default {
 | keyFormatter  | 自定义 keep-alive 的 key 的处理器，详见[keyFormatter](#keyformatter)       | Function | () => {} |
 | historyFilter | 自定义 keep-alive 的 history 的过滤器，详见[historyFilter](#historyfilter) | Function | null     |
 
-## 六、高级用法
+## 五、高级用法
 
 ### <div id="keepScroll">keepScroll</div>
 
