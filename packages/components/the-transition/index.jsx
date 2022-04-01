@@ -111,7 +111,6 @@ export default {
 
         this.transitionName = transitionName;
         this.transitionEnterActiveClass = `${transitionName}-enter-active`;
-
         next();
       });
     },
@@ -121,8 +120,7 @@ export default {
       if (this.$routerHistory.useTimestamp) {
         const fromTimestamp = from.query.timestamp;
         const toTimestamp = to.query.timestamp;
-        if (!toTimestamp) return name;
-        return fromTimestamp > toTimestamp ? 'slide-right' : name;
+        return (!toTimestamp && fromTimestamp) || (fromTimestamp > toTimestamp) ? 'slide-right' : name;
       }
       return name;
     },
