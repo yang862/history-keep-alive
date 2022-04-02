@@ -143,11 +143,12 @@ index.vue（子页面，route-name: keep-scroll）
 </template>
 ```
 
-route.js（子页面路由配置）
+route.js（配置子页面路由）
 
 ```javascript
 export default [
-  ...{
+  ......
+  {
     path: "/keep-scroll",
     name: "keep-scroll",
     component: KeepScroll,
@@ -167,6 +168,7 @@ export default [
 | aliveKey       | 嵌套使用`<the-keep-alive>`时，想要在不同页面复用相同的父级组件，就要设置一个唯一的值 | String  | 无      |
 | nocache        | 是否禁用缓存                                                                         | Boolean | 无      |
 | transitionName | 设置页面的 transition 效果，可选值`[slide, zoom, fade, fade-transform]`              | String  | 'slide' |
+| keepScroll     | 启用页面的 keep scroll                                                               | Boolean | 无      |
 
 **更多功能参数，可通过 keyFormatter 和 keyFormatter 自行设置**
 
