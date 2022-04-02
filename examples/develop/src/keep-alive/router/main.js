@@ -23,19 +23,8 @@ export default [
       {
         path: 'cart',
         name: 'cart',
-        component: Views.Cart,
-        meta: {
-          title: '购物车'
-        }
+        component: Views.Cart
       },
-      {
-        path: 'usercenter',
-        name: 'usercenter',
-        component: Views.Usercenter,
-        meta: {
-          title: '我的'
-        }
-      }
     ]
   },
   {
@@ -47,5 +36,13 @@ export default [
     path: '/message',
     name: 'message',
     component: Views.Message,
+  },
+  {
+    path: '/keep-scroll',
+    name: 'keep-scroll',
+    component: Views.KeepScroll,
+    meta: {
+      keepScroll: true
+    }
   },
 ]

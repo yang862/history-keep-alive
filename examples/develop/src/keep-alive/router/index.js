@@ -7,7 +7,7 @@ Vue.use(VueRouter)
 const routes = [ ...mainRoutes ]
 
 const createRouter = () => new VueRouter({
-  base: 'keep-alive',
+  base: 'history-keep-alive-page',
   mode: 'history',
   routes: routes
 })

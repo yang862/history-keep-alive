@@ -1,11 +1,9 @@
 <template>
-  <div class="page">
+  <div class="bg page">
     <van-nav-bar
-      title="列表"
+      title="详情"
       left-arrow
-      right-text="消息"
       @click-left="()=>$router.back()"
-      @click-right="()=>$router.push({name:'message'})"
     />
     <div style="padding:20px;">
       <div class="card">
@@ -17,15 +15,15 @@
             </span>
           </van-col>
           <van-col span="8" style="text-align:center;">
-            <span @click="()=>$router.push({name:'detail'})">
-              <van-icon name="browsing-history" color="#3F93DC" size="30px" />
-              <div>跳转详情</div>
+            <span @click="()=>$router.push({name:'home'})">
+              <van-icon name="wap-home" color="#3F93DC" size="30px" />
+              <div>跳转首页</div>
             </span>
           </van-col>
           <van-col span="8" style="text-align:center;">
-            <span @click="()=>$router.push({name:'keep-scroll'})">
-              <van-icon name="browsing-history" color="#3F93DC" size="30px" />
-              <div>keep-scroll demo</div>
+            <span @click="()=>$router.push({name:'zoom'})">
+              <van-icon name="chat" color="#3F93DC" size="30px" />
+              <div>跳转消息</div>
             </span>
           </van-col>
         </van-row>

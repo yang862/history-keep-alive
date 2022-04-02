@@ -13,6 +13,7 @@ const constantRoutes = [
 ]
 
 const createRouter = () => new VueRouter({
+  base: 'history-default-page',
   mode: 'history',
   routes: constantRoutes
 })

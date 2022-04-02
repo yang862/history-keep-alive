@@ -30,11 +30,15 @@ module.exports = {
       index: '/default/index.html',
       rewrites: [
         {
-          from: /^\/keep-alive(\/.*)?$/,
+          from: /^\/history-default-page(\/.*)?$/,
+          to: '/default/index.html',
+        },
+        {
+          from: /^\/history-keep-alive-page(\/.*)?$/,
           to: '/keep-alive/index.html',
         },
         {
-          from: /^\/transition(\/.*)?$/,
+          from: /^\/history-transition-page(\/.*)?$/,
           to: '/transition/index.html',
         },
       ]

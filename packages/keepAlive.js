@@ -41,6 +41,7 @@ export default function(router) {
 
   // 记录离开时的scrollTop
   function getSrollTop(from) {
+    // 这里可以用document
     const target = document.querySelector(scrollTarget);
     if (!target) return;
     if (!from.meta.scrollTopMap) from.meta.scrollTopMap = {};

@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- <router-view /> -->
-    <history-keep-alive />
+    <history-keep-alive alive-ref="view" />
   </div>
 </template>
 <script>

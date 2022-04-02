@@ -135,12 +135,27 @@ index.vue（父页面）
 </template>
 ```
 
-index.vue（子页面）
+index.vue（子页面，route-name: keep-scroll）
 
 ```vue
 <template>
   <div id="keep-scroll-plugin-target">...</div>
 </template>
+```
+
+route.js（子页面路由配置）
+
+```javascript
+export default [
+  ...{
+    path: "/keep-scroll",
+    name: "keep-scroll",
+    component: KeepScroll,
+    meta: {
+      keepScroll: true, // 设置keepScroll参数
+    },
+  },
+];
 ```
 
 **注：body 滚动的页面无法使用，请自行实现**
