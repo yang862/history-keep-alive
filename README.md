@@ -5,6 +5,12 @@
 
 > 需要 [vue](https://github.com/vuejs/vue) `2.x` 与 [vue-router](https://github.com/vuejs/vue-router) `3.x`。
 
+### DEMO
+
+[在线预览](https://yang862.github.io/history-default-page/)
+[history-keep-alive](https://yang862.github.io/history-keep-alive-page/)
+[history-transition](https://yang862.github.io/history-transition-page/)
+
 ## 是什么
 
 像原生 app 一样缓存页面的 vue 插件，基于 vue 的缓存机制扩展功能，开发者可按自己的需求实现复杂的自定义缓存功能
