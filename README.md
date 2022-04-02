@@ -5,7 +5,7 @@
 
 > 需要 [vue](https://github.com/vuejs/vue) `2.x` 与 [vue-router](https://github.com/vuejs/vue-router) `3.x`。
 
-### DEMO
+### DEMO（建议在设备模拟下查看）
 
 [在线预览](https://yang862.github.io/history-default-page/)
 
