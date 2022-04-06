@@ -150,6 +150,7 @@ destroyAll() {
 ```
 
 **注：销毁页面缓存的 demo 参见下方链接**
+
 [demo](https://github.com/yang862/history-keep-alive-example/blob/master/src/keep-alive/views/destroy/index.vue)
 
 ### <div id="keepScroll">keepScroll</div>
