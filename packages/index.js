@@ -3,6 +3,8 @@ import KeepAliveComponent from './components/the-keep-alive/index.jsx';
 import BaseKeepAliveComponent from './components/base-keep-alive/KeepAlive.js';
 export * from './components/index.js';
 
+const history = window.history;
+
 class RouterHistory {
   // 记录当前路由的信息
   resetCurrent() {
@@ -11,6 +13,7 @@ class RouterHistory {
       routeName: null,
       matched: [], // 当前展示的路由信息（嵌套多级）
       timestamp: null,
+      cacheKey: null,
     };
   }
   createHistory(to, timestamp) {
@@ -27,8 +30,9 @@ class RouterHistory {
     return current;
   }
 
-  addHistory({ router, routeHistory, isReplace = false, timestamp }) {
+  addHistory({ router, routeHistory, isReplace = false, timestamp, cacheKey }) {
     const current = this.createHistory(router.currentRoute, timestamp);
+    if (cacheKey) current.cacheKey = cacheKey;
     !isReplace ? routeHistory.push(current) : routeHistory.splice(-1, 1, current);
     history.replaceState({ ...(history.state || {}), current, routeHistory }, '');
   }
@@ -45,12 +49,15 @@ class RouterHistory {
     const that = this;
 
     router.onReady(() => {
-      immediate && this.addHistory({
-        router, routeHistory: [],
-        timestamp: useTimestamp && router.currentRoute.query
-          ? router.currentRoute.query.timestamp
-          : null,
-      });
+      immediate && setTimeout(() => { // 等待页面渲染完成
+        this.addHistory({
+          router, routeHistory: [],
+          timestamp: useTimestamp && router.currentRoute.query
+            ? router.currentRoute.query.timestamp
+            : null,
+          cacheKey: _history.cacheKey,
+        });
+      }, 0);
     });
 
     const _history = { // 自定义对象
@@ -58,6 +65,7 @@ class RouterHistory {
       popstate: false,
       immediate,
       useTimestamp,
+      cacheKey: null,
     };
 
     // 当发生浏览器路由动作时（e.g. history.go/history.back/history.forward），会触发popstate事件
@@ -83,6 +91,7 @@ class RouterHistory {
       that.addHistory({
         router, routeHistory, isReplace: true,
         timestamp: useTimestamp ? timestamp : null,
+        cacheKey: _history.cacheKey,
       });
     };
 
@@ -96,6 +105,7 @@ class RouterHistory {
       that.addHistory({
         router, routeHistory,
         timestamp: useTimestamp ? timestamp : null,
+        cacheKey: _history.cacheKey,
       });
     };
 

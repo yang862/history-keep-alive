@@ -45,4 +45,12 @@ export default [
       keepScroll: true
     }
   },
+  {
+    path: '/destroy',
+    name: 'destroy',
+    component: Views.Destroy,
+    meta: {
+      keepScroll: true
+    }
+  },
 ]

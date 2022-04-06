@@ -10,22 +10,30 @@
     <div style="padding:20px;">
       <div class="card">
         <van-row justify="space-between">
-          <van-col span="8" style="text-align:center;">
+          <van-col span="12" style="text-align:center;">
             <span @click="++count">
               <van-icon name="good-job" color="#3F93DC" size="30px" />
               <div>{{count}}</div>
             </span>
           </van-col>
-          <van-col span="8" style="text-align:center;">
+          <van-col span="12" style="text-align:center;">
             <span @click="()=>$router.push({name:'detail'})">
               <van-icon name="browsing-history" color="#3F93DC" size="30px" />
               <div>跳转详情</div>
             </span>
           </van-col>
-          <van-col span="8" style="text-align:center;">
+        </van-row>
+        <van-row justify="space-between" style="padding-top:20px;">
+          <van-col span="12" style="text-align:center;">
             <span @click="()=>$router.push({name:'keep-scroll'})">
               <van-icon name="browsing-history" color="#3F93DC" size="30px" />
               <div>keep-scroll demo</div>
+            </span>
+          </van-col>
+          <van-col span="12" style="text-align:center;">
+            <span @click="()=>$router.push({name:'destroy'})">
+              <van-icon name="browsing-history" color="#3F93DC" size="30px" />
+              <div>destroy demo</div>
             </span>
           </van-col>
         </van-row>

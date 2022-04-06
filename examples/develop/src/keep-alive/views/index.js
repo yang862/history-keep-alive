@@ -5,6 +5,7 @@ const Cart = () => import('./home/cart/index.vue')
 const Detail = () => import('./detail/index.vue')
 const Message = () => import('./message/index.vue')
 const KeepScroll = () => import('./keep-scroll/index.vue')
+const Destroy = () => import('./destroy/index.vue')
 
 export default {
   Cart,
@@ -13,4 +14,5 @@ export default {
   List,
   Message,
   KeepScroll,
+  Destroy,
 }

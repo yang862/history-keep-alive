@@ -67,9 +67,10 @@ function pruneCacheEntry(
   const entry = cache[key];
   if (entry && (!current || entry.tag !== current.tag)) {
     entry.componentInstance.$destroy();
+    cache[key] = null;
   }
-  cache[key] = null;
   remove(keys, key);
+  return !!entry;
 }
 
 const patternTypes = [ String, RegExp, Array ];
@@ -87,6 +88,17 @@ export default {
   },
 
   methods: {
+    destroy({ path, key }) {
+      if (!key) key = this.keyMap[path];
+      if (!key) return false;
+      if (path) this.keyMap[path] = null; // 清除keyMap
+      return pruneCacheEntry(this.cache, key, this.keys);
+    },
+    destroyAll() {
+      for (const key in this.cache) {
+        pruneCacheEntry(this.cache, key, this.keys);
+      }
+    },
     cacheVNode() {
       const { cache, keys, vnodeToCache, keyToCache } = this;
       if (vnodeToCache) {
@@ -102,6 +114,7 @@ export default {
           pruneCacheEntry(cache, keys[0], keys, this._vnode);
         }
         this.vnodeToCache = null;
+        this.keyMap[this.$route.path] = keyToCache;
       }
     },
     _setParentNode() {
@@ -119,13 +132,16 @@ export default {
 
   created() {
     this.cache = Object.create(null);
+    this.keyMap = Object.create(null); // 用于以path对照key
     this.keys = [];
+    if (this.$routerHistory) {
+      this.$routerHistory.destroy = this.destroy;
+      this.$routerHistory.destroyAll = this.destroyAll;
+    }
   },
 
   destroyed() {
-    for (const key in this.cache) {
-      pruneCacheEntry(this.cache, key, this.keys);
-    }
+    this.destroyAll();
   },
 
   mounted() {
@@ -159,6 +175,15 @@ export default {
     if (componentOptions) {
       // check pattern
       const name = this.aliveKey || getComponentName(componentOptions);
+
+      const { cache, keys } = this;
+      const key = this.aliveKey || (vnode.key == null
+        // same constructor may get registered as different local components
+        // so cid alone is not enough (#3269)
+        ? componentOptions.Ctor.cid + (componentOptions.tag ? `::${componentOptions.tag}` : '')
+        : vnode.key);
+      this.$routerHistory.cacheKey = key; // 传递cacheKey
+
       const { include, exclude } = this;
       if (
         // not included
@@ -168,13 +193,6 @@ export default {
       ) {
         return vnode;
       }
-
-      const { cache, keys } = this;
-      const key = this.aliveKey || (vnode.key == null
-        // same constructor may get registered as different local components
-        // so cid alone is not enough (#3269)
-        ? componentOptions.Ctor.cid + (componentOptions.tag ? `::${componentOptions.tag}` : '')
-        : vnode.key);
 
       if (cache[key]) {
         vnode.componentInstance = cache[key].componentInstance;

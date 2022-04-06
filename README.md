@@ -121,6 +121,37 @@ export default {
 
 ## 五、高级用法
 
+### 销毁页面缓存
+
+$routeHistory.destroy
+
+```javascript
+// 通过path销毁相应页面缓存
+destroyByPath() {
+  const res = this.$routerHistory.destroy({ path: '/home/list' });
+  // res为true表示销毁成功，否则销毁失败
+},
+// 通过cacheKey销毁相应页面缓存
+destroyByCacheKey() {
+  const routeHistory = history.state.routeHistory || [];
+  const key = routeHistory.slice(-2)[0].cacheKey; // 从路由历史中获取对应页面的cacheKey
+  const res = this.$routerHistory.destroy({ key });
+  // 同上
+}
+```
+
+$routeHistory.destroyAll
+
+```javascript
+// 销毁所有页面缓存
+destroyAll() {
+  this.$routerHistory.destroyAll();
+}
+```
+
+**注：销毁页面缓存的 demo 参见下方链接**
+[demo](https://github.com/yang862/history-keep-alive-example/blob/master/src/keep-alive/views/destroy/index.vue)
+
 ### <div id="keepScroll">keepScroll</div>
 
 > **keep-scroll-plugin-target**：约定好的 id，要使用 keepScroll 功能就要给滚动元素设置这个 id
