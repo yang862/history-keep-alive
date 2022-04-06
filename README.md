@@ -205,6 +205,7 @@ export default [
 | keepScroll     | 启用页面的 keep scroll                                                                   | Boolean | 无      |
 
 **[demo](https://github.com/yang862/history-keep-alive-example/blob/master/src/transition/router/main.js)**
+
 **更多功能参数，可通过 keyFormatter 和 keyFormatter 自行设置**
 
 ### <div id="keyformatter">keyFormatter</div>
