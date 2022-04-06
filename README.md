@@ -13,6 +13,8 @@
 
 [history-transition](https://yang862.github.io/history-transition-page/)
 
+[demo 项目地址](https://github.com/yang862/history-keep-alive-example)
+
 ## 是什么
 
 像原生 app 一样缓存页面的 vue 插件，基于 vue 的缓存机制扩展功能，开发者可按自己的需求实现复杂的自定义缓存功能
@@ -195,13 +197,14 @@ export default [
 
 ### routes meta 参数
 
-| 参数           | 描述                                                                                 | 类型    | 默认值  |
-| -------------- | ------------------------------------------------------------------------------------ | ------- | ------- |
-| aliveKey       | 嵌套使用`<the-keep-alive>`时，想要在不同页面复用相同的父级组件，就要设置一个唯一的值 | String  | 无      |
-| nocache        | 是否禁用缓存                                                                         | Boolean | 无      |
-| transitionName | 设置页面的 transition 效果，可选值`[slide, zoom, fade, fade-transform]`              | String  | 'slide' |
-| keepScroll     | 启用页面的 keep scroll                                                               | Boolean | 无      |
+| 参数           | 描述                                                                                     | 类型    | 默认值  |
+| -------------- | ---------------------------------------------------------------------------------------- | ------- | ------- |
+| aliveKey       | 嵌套使用`<history-keep-alive>`时，想要在不同页面复用相同的父级组件，就要设置一个唯一的值 | String  | 无      |
+| nocache        | 是否禁用缓存                                                                             | Boolean | 无      |
+| transitionName | 设置页面的 transition 效果，可选值`[slide, zoom, fade, fade-transform]`                  | String  | 'slide' |
+| keepScroll     | 启用页面的 keep scroll                                                                   | Boolean | 无      |
 
+**[demo](https://github.com/yang862/history-keep-alive-example/blob/master/src/transition/router/main.js)**
 **更多功能参数，可通过 keyFormatter 和 keyFormatter 自行设置**
 
 ### <div id="keyformatter">keyFormatter</div>

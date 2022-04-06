@@ -53,7 +53,8 @@ export default function(router) {
     if (!to.meta ||
       !to.meta.keepScroll ||
       !to.meta.scrollTopMap ||
-      !to.meta.scrollTopMap[to.path]
+      !to.meta.scrollTopMap[to.path] ||
+      (!ref || !ref.$vnode || !ref.$vnode.data.keepAlive)
     ) return; // 没有缓存的页面不做还原
     try {
       const isTarget = ref && ref.$el && ref.$el.id &&
