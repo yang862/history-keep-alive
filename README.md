@@ -126,29 +126,24 @@ export default {
 
 ### 销毁页面缓存
 
-$routeHistory.destroy
+$routerHistoryInstance.destroy
 
 ```javascript
 // 通过path销毁相应页面缓存
+// 使用时请避免销毁当前页面的缓存，以免引起页面渲染问题
 destroyByPath() {
-  const res = this.$routerHistory.destroy({ path: '/home/list' });
+  const res = this.$routerHistoryInstance.destroy({ path: '/home/list' });
   // res为true表示销毁成功，否则销毁失败
 },
-// 通过cacheKey销毁相应页面缓存
-destroyByCacheKey() {
-  const routeHistory = history.state.routeHistory || [];
-  const key = routeHistory.slice(-2)[0].cacheKey; // 从路由历史中获取对应页面的cacheKey
-  const res = this.$routerHistory.destroy({ key });
-  // 同上
-}
 ```
 
-$routeHistory.destroyAll
+$routerHistoryInstance.destroyAll
 
 ```javascript
 // 销毁所有页面缓存
+// destroyAll方法不会销毁当前页面的缓存
 destroyAll() {
-  this.$routerHistory.destroyAll();
+  this.$routerHistoryInstance.destroyAll();
 }
 ```
 
@@ -170,7 +165,7 @@ index.vue（父页面）
 </template>
 ```
 
-index.vue（子页面，route-name: keep-scroll）
+index.vue（子页面，例如：route-name: keep-scroll）
 
 ```vue
 <template>
@@ -198,12 +193,12 @@ export default [
 
 ### routes meta 参数
 
-| 参数           | 描述                                                                                     | 类型    | 默认值  |
-| -------------- | ---------------------------------------------------------------------------------------- | ------- | ------- |
-| aliveKey       | 嵌套使用`<history-keep-alive>`时，想要在不同页面复用相同的父级组件，就要设置一个唯一的值 | String  | 无      |
-| nocache        | 是否禁用缓存                                                                             | Boolean | 无      |
-| transitionName | 设置页面的 transition 效果，可选值`[slide, zoom, fade, fade-transform]`                  | String  | 'slide' |
-| keepScroll     | 启用页面的 keep scroll                                                                   | Boolean | 无      |
+| 参数           | 描述                                                                                     | 类型    | 默认值 |
+| -------------- | ---------------------------------------------------------------------------------------- | ------- | ------ |
+| aliveKey       | 嵌套使用`<history-keep-alive>`时，想要在不同页面复用相同的父级组件，就要设置一个唯一的值 | String  | 无     |
+| nocache        | 是否禁用缓存                                                                             | Boolean | 无     |
+| transitionName | 设置页面的 transition 效果，可选值`[slide, zoom, fade, fade-transform]`                  | String  | 无     |
+| keepScroll     | 启用页面的 keep scroll 功能                                                              | Boolean | 无     |
 
 **[demo](https://github.com/yang862/history-keep-alive-example/blob/master/src/transition/router/main.js)**
 

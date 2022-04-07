@@ -37,6 +37,6 @@ export default {
     return {
       count: 0,
     }
-  }
+  },
 }
 </script>

@@ -65,12 +65,14 @@ function pruneCacheEntry(
   current
 ) {
   const entry = cache[key];
-  if (entry && (!current || entry.tag !== current.tag)) {
+  if (entry && (!current || (entry.tag !== current.tag
+    || entry.componentInstance._uid !== current.componentInstance._uid))) {
     entry.componentInstance.$destroy();
     cache[key] = null;
+    entry && remove(keys, key);
+    return true;
   }
-  remove(keys, key);
-  return !!entry;
+  return false;
 }
 
 const patternTypes = [ String, RegExp, Array ];
@@ -92,11 +94,14 @@ export default {
       if (!key) key = this.keyMap[path];
       if (!key) return false;
       if (path) this.keyMap[path] = null; // 清除keyMap
-      return pruneCacheEntry(this.cache, key, this.keys);
+      return pruneCacheEntry(this.cache, key, this.keys, this._vnode);
     },
-    destroyAll() {
+    /**
+     * @param {Boolean} all 是否销毁所有组件缓存（包括当前组件）
+     */
+    destroyAll(all) {
       for (const key in this.cache) {
-        pruneCacheEntry(this.cache, key, this.keys);
+        pruneCacheEntry(this.cache, key, this.keys, all ? undefined : this._vnode);
       }
     },
     cacheVNode() {
@@ -134,24 +139,24 @@ export default {
     this.cache = Object.create(null);
     this.keyMap = Object.create(null); // 用于以path对照key
     this.keys = [];
-    if (this.$routerHistory) {
-      this.$routerHistory.destroy = this.destroy;
-      this.$routerHistory.destroyAll = this.destroyAll;
-    }
   },
 
   destroyed() {
-    this.destroyAll();
+    this.destroyAll(true);
   },
 
   mounted() {
     this._setParentNode();
     this.cacheVNode();
     this.$watch('include', val => {
-      pruneCache(this, name => matches(val, name), !!this.aliveKey);
+      setTimeout(() => { // 等待页面渲染完成
+        pruneCache(this, name => matches(val, name), !!this.aliveKey);
+      }, 0);
     });
     this.$watch('exclude', val => {
-      pruneCache(this, name => !matches(val, name), !!this.aliveKey);
+      setTimeout(() => { // 等待页面渲染完成
+        pruneCache(this, name => !matches(val, name), !!this.aliveKey);
+      }, 0);
     });
   },
 
@@ -173,6 +178,14 @@ export default {
 
     const componentOptions = vnode && vnode.componentOptions;
     if (componentOptions) {
+      setTimeout(() => { // 等待组件初始化完成
+        // 给<history-keep-alive>实例注入detroy方法
+        vnode.componentInstance.$routerHistoryInstance = {
+          destroy: this.destroy,
+          destroyAll: this.destroyAll,
+        };
+      }, 0);
+
       // check pattern
       const name = this.aliveKey || getComponentName(componentOptions);
 
@@ -182,7 +195,6 @@ export default {
         // so cid alone is not enough (#3269)
         ? componentOptions.Ctor.cid + (componentOptions.tag ? `::${componentOptions.tag}` : '')
         : vnode.key);
-      this.$routerHistory.cacheKey = key; // 传递cacheKey
 
       const { include, exclude } = this;
       if (

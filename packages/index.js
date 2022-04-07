@@ -13,7 +13,6 @@ class RouterHistory {
       routeName: null,
       matched: [], // 当前展示的路由信息（嵌套多级）
       timestamp: null,
-      cacheKey: null,
     };
   }
   createHistory(to, timestamp) {
@@ -30,9 +29,8 @@ class RouterHistory {
     return current;
   }
 
-  addHistory({ router, routeHistory, isReplace = false, timestamp, cacheKey }) {
+  addHistory({ router, routeHistory, isReplace = false, timestamp }) {
     const current = this.createHistory(router.currentRoute, timestamp);
-    if (cacheKey) current.cacheKey = cacheKey;
     !isReplace ? routeHistory.push(current) : routeHistory.splice(-1, 1, current);
     history.replaceState({ ...(history.state || {}), current, routeHistory }, '');
   }
@@ -64,7 +62,6 @@ class RouterHistory {
           timestamp: useTimestamp && router.currentRoute.query
             ? router.currentRoute.query.timestamp
             : null,
-          cacheKey: _history.cacheKey,
         });
       }, 0);
     });
@@ -74,7 +71,6 @@ class RouterHistory {
       popstate: false,
       immediate,
       useTimestamp,
-      cacheKey: null,
       defaultTransitionName,
     };
 
@@ -101,7 +97,6 @@ class RouterHistory {
       that.addHistory({
         router, routeHistory, isReplace: true,
         timestamp: useTimestamp ? timestamp : null,
-        cacheKey: _history.cacheKey,
       });
     };
 
@@ -115,7 +110,6 @@ class RouterHistory {
       that.addHistory({
         router, routeHistory,
         timestamp: useTimestamp ? timestamp : null,
-        cacheKey: _history.cacheKey,
       });
     };
 
