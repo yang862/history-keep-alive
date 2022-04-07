@@ -45,7 +45,16 @@ class RouterHistory {
     return params;
   }
 
-  install(Vue, { router, immediate = true, useTimestamp = true, componentPrefix = 'history' }) {
+  install(
+    Vue,
+    {
+      router,
+      immediate = true,
+      useTimestamp = true,
+      componentPrefix = 'history',
+      defaultTransitionName = 'slide',
+    }
+  ) {
     const that = this;
 
     router.onReady(() => {
@@ -66,6 +75,7 @@ class RouterHistory {
       immediate,
       useTimestamp,
       cacheKey: null,
+      defaultTransitionName,
     };
 
     // 当发生浏览器路由动作时（e.g. history.go/history.back/history.forward），会触发popstate事件

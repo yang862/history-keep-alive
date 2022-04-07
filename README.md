@@ -69,12 +69,13 @@ index.vue （任意一个使用`<router-view>`的页面）
 
 ## 三、Options
 
-| 参数            | 描述                                                                                                                                                           | 类型                                                          | 默认值    |
-| --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- | --------- |
-| router          | 必传，vue-router 实例                                                                                                                                          | [VueRouter](https://v3.router.vuejs.org/zh/guide/#javascript) | 无        |
-| immediate       | router.onReady 时是否记录路由历史（非必要不能修改）                                                                                                            | Boolean                                                       | true      |
-| useTimestamp    | 是否使用 timestamp 判断前进后退。启用时，push 和 replace 动作会往页面地址中加入 timestamp 参数，若禁用，将无法判断当前路由动作。使用`Transition`组件时建议开启 | Boolean                                                       | true      |
-| componentPrefix | history-keep-alive 组件注册时的前缀，例如传值'base'，使用时即`<base-keep-alive>`                                                                               | String                                                        | 'history' |
+| 参数                  | 描述                                                                                                                                                           | 类型                                                          | 默认值    |
+| --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- | --------- |
+| router                | 必传，vue-router 实例                                                                                                                                          | [VueRouter](https://v3.router.vuejs.org/zh/guide/#javascript) | 无        |
+| immediate             | router.onReady 时是否记录路由历史（非必要不能修改）                                                                                                            | Boolean                                                       | true      |
+| useTimestamp          | 是否使用 timestamp 判断前进后退。启用时，push 和 replace 动作会往页面地址中加入 timestamp 参数，若禁用，将无法判断当前路由动作。使用`Transition`组件时建议开启 | Boolean                                                       | true      |
+| componentPrefix       | history-keep-alive 组件注册时的前缀，例如传值'base'，使用时即`<base-keep-alive>`                                                                               | String                                                        | 'history' |
+| defaultTransitionName | `Transition`组件默认的过渡效果                                                                                                                                 | String                                                        | 'slide'   |
 
 ## 四、使用 Transition 组件
 

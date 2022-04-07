@@ -53,4 +53,39 @@ export default [
       keepScroll: true
     }
   },
+  {
+    path: '/no-cache',
+    name: 'no-cache',
+    component: Views.Detail,
+    meta: {
+      nocache: true
+    }
+  },
+  {
+    path: '/frame',
+    name: 'frame',
+    component: Views.Frame,
+    children: [
+      {
+        path: 'frame-detail',
+        name: 'frame-detail',
+        component: Views.FrameDetail,
+        meta: {
+          title: '这是详情页面'
+        },
+      },
+      {
+        path: 'frame-message',
+        name: 'frame-message',
+        component: Views.FrameDetail,
+        meta: {
+          title: '切换到了消息页面'
+        },
+      },
+    ],
+    meta: {
+      title: 'frame',
+      aliveKey: 'frame',
+    }
+  },
 ]

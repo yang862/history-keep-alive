@@ -93,10 +93,11 @@ export default {
           return next();
         }
 
-        let transitionName = to.meta.transitionName || DEFAULT_TRANSITION;
+        let transitionName = to.meta.transitionName
+          || this.$routerHistory.defaultTransitionName || DEFAULT_TRANSITION;
         transitionName = this.handleBackTransition(transitionName, to, from);
 
-        if (transitionName === 'slide' && this.$routerHistory.useTimestamp) {
+        if (transitionName === 'slide') {
           transitionName = 'slide-left'; // slide默认为slide-left
         }
 

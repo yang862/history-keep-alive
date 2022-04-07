@@ -34,6 +34,9 @@ export default [
     path: '/slide',
     name: 'slide',
     component: Views.Detail,
+    meta: {
+      transitionName: 'slide'
+    }
   },
   {
     path: '/zoom',
@@ -57,14 +60,6 @@ export default [
     component: Views.Detail,
     meta: {
       transitionName: 'fade-transform'
-    }
-  },
-  {
-    path: '/no-cache',
-    name: 'no-cache',
-    component: Views.Detail,
-    meta: {
-      nocache: true
     }
   },
 ]

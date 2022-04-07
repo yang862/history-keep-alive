@@ -1,7 +1,7 @@
 <template>
   <div class="bg page">
     <van-nav-bar
-      title="消息"
+      title="切换到了消息页面"
       left-arrow
       @click-left="()=>$router.back()"
     />

@@ -1,35 +1,43 @@
 // global transition css
 
 /* fade */
-.fade-enter-active,
-.fade-leave-active {
-  transition-duration: 0.3s;
+.fade-enter {
+  opacity: 0;
+}
+.fade-enter-active {
+  position: fixed !important;
+  z-index: 1000000;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  transition-duration: 0.5s;
   transition-property: height, opacity;
   transition-timing-function: ease;
-  overflow: hidden;
 }
-
-.fade-enter,
+.fade-leave,
 .fade-leave-active {
-  opacity: 0;
+  display: none;
 }
 
 /* fade-transform */
-.fade-transform-leave-active {
-  transition: all 0.1s;
-}
-.fade-transform-enter-active {
-  transition: all 0.3s;
-}
-
 .fade-transform-enter {
   opacity: 0;
-  transform: translateX(-30px);
+  transform: translateY(-30px);
 }
 
-.fade-transform-leave-to {
-  opacity: 0;
-  transform: translateX(30px);
+.fade-transform-enter-active {
+  position: fixed !important;
+  z-index: 1000000;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  transition-duration: 0.4s;
+  transition-property: all;
+  transition-timing-function: ease;
+}
+
+.fade-transform-leave-active {
+  display: none;
 }
 
 /* slide */

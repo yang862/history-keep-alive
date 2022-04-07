@@ -6,6 +6,8 @@ const Detail = () => import('./detail/index.vue')
 const Message = () => import('./message/index.vue')
 const KeepScroll = () => import('./keep-scroll/index.vue')
 const Destroy = () => import('./destroy/index.vue')
+const Frame = () => import('./frame/index.vue')
+const FrameDetail = () => import('./frame-detail/index.vue')
 
 export default {
   Cart,
@@ -15,4 +17,6 @@ export default {
   Message,
   KeepScroll,
   Destroy,
+  Frame,
+  FrameDetail,
 }

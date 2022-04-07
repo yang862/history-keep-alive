@@ -1,7 +1,7 @@
 <template>
   <div class="bg page">
     <van-nav-bar
-      title="详情"
+      title="这是详情页面"
       left-arrow
       @click-left="()=>$router.back()"
     />
