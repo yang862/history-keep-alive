@@ -158,7 +158,7 @@ export default {
               aliveKey={this.aliveKey}
               max={this.max}
             >
-              <router-view ref={this.aliveRef} />
+              <router-view ref={this.aliveRef} key={this.aliveKey} />
             </history-base-keep-alive>
           ) : (<router-view ref={this.aliveRef} />)
         }
